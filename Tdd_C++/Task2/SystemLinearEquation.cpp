@@ -7,11 +7,11 @@ LinearEquation& SystemLinearEquation::operator[](int index)
 	if (index >= 0 && index < system.size()) return system[index];
 	else throw out_of_range("Выход за границы!");
 }
-int SystemLinearEquation::size()
+int SystemLinearEquation::size() 
 {
 	return system.size();
 }
-void SystemLinearEquation::Add(LinearEquation& a)
+void SystemLinearEquation::Add(LinearEquation& a) 
 {
 	if (a.size() == n + 1) system.push_back(a);
 	else throw invalid_argument("Недопустимое значение!");
@@ -27,11 +27,11 @@ void SystemLinearEquation::StepUp()
 			while (system[i][z] == 0 && z < n) z++;
 			c = 1;
 			while ((i + c) < size() && system[i + c][z] == 0) c++;
-			if ((i + c) == size())
+			if ((i + c) == size()) 
 			{
 				return;
 			}
-			swap(system[i], system[i + c]);
+			swap(system[i], system[i + c]); 
 		}
 		for (int j = i + 1; j < size(); j++)
 		{
@@ -73,8 +73,8 @@ vector<double> SystemLinearEquation::solveSystem()
 
 SystemLinearEquation::operator std::string()
 {
-	string res = "";
+	string result = "";
 	for (int i = 0; i < size(); i++)
-		res += (string)system[i] + '\n';
-	return res;
+		result += (string)system[i] + '\n';
+	return result;
 }

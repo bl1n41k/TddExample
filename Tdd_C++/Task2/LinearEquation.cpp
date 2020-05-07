@@ -7,15 +7,15 @@
 using namespace std;
 
 vector<string> LinearEquation::resplit(const string& s, string rgx_str) {
-	vector<string> elem;
-	regex rgx(rgx_str);
-	sregex_token_iterator iter(s.begin(), s.end(), rgx, -1);
+	vector<string> element;
+	regex Regex(rgx_str);
+	sregex_token_iterator iterator(s.begin(), s.end(), Regex, -1);
 	std::sregex_token_iterator end;
-	while (iter != end) {
-		elem.push_back(*iter);
-		++iter;
+	while (iterator != end) {
+		element.push_back(*iterator);
+		++iterator;
 	}
-	return elem;
+	return element;
 }
 LinearEquation::LinearEquation(string _s)
 {
@@ -107,9 +107,9 @@ LinearEquation::operator bool()
 
 LinearEquation::operator list<double>()
 {
-	list<double> coeff;
-	copy(coefficients.begin(), coefficients.end(), back_inserter(coeff));
-	return coeff;
+	list<double> coefficient;
+	copy(coefficients.begin(), coefficients.end(), back_inserter(coefficient));
+	return coefficient;
 }
 bool LinearEquation::isNull()
 {
