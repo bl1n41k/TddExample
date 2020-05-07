@@ -11,21 +11,21 @@ namespace Task2
     {
         private List<double> coefficient = new List<double>();
 
-        public LinearEquation(double[] coefficient)
+        public LinearEquation(double[] coefficient)//массив 
         {
             this.coefficient = coefficient.ToList();
         }
 
-        public LinearEquation(List<double> coefficient)
+        public LinearEquation(List<double> coefficient)//список
         {
             this.coefficient = coefficient.ToList();
         }
-        public LinearEquation(IEnumerable<double> coefficient)
+        public LinearEquation(IEnumerable<double> coefficient)//интерфейс
         {
             this.coefficient = coefficient.ToList();
         }
 
-        public LinearEquation(string _coefficient)
+        public LinearEquation(string _coefficient) //строка с паттерном 
         {
             string[] coefficient = Regex.Split(_coefficient, @"[^\d.-]");
             for (int i = 0; i < coefficient.Length; i++)
@@ -38,7 +38,7 @@ namespace Task2
             }
         }
 
-        public LinearEquation(int n)
+        public LinearEquation(int n)//уравнение из n-коэффициентов, где n - кол-во 0.
         {
             if (n > 0)
             {
@@ -48,23 +48,23 @@ namespace Task2
             else throw new ArgumentException();
         }
 
-        public int Size
+        public int Size //количество коэффициентов
         {
             get => coefficient.Count;
         }
 
-        public void RandomInitialization()
+        public void RandomInitialization()//случайные коэффициенты
         {
             Random rand = new Random();
             for (int i = 0; i < Size; i++) coefficient[i] = rand.Next(35) / 10;
         }
 
-        public void SameInitialization(double value)
+        public void SameInitialization(double value) //равные коэффициенты
         {
             for (int i = 0; i < Size; i++) coefficient[i] = value;
         }
 
-        public double this[int index]
+        public double this[int index] //Доступ к коэффициентам уравнения
         {
             get
             {
@@ -154,14 +154,14 @@ namespace Task2
             b.coefficient = coefficient.ToList();
         }
 
-        public bool IsNull()
+        public bool IsNull()//Проверка на пустоту
         {
             for (int i = 0; i < Size; i++)
                 if (this[i] != 0) return false;
             return true;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object obj)//сравнение
         {
             LinearEquation b = (LinearEquation)obj;
             for (int i = 0; i < Size; i++)

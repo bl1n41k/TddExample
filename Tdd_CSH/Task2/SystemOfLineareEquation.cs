@@ -15,25 +15,23 @@ namespace Task2
         {
             this.n = n;
         }
-        public LinearEquation this[int index]
+        public LinearEquation this[int index] // Доступ к уравнению 
         {
             get
             {
-                if (index >= 0 && index < Size)
-                    return system[index];
+                if (index >= 0 && index < Size) return system[index];
                 else throw new IndexOutOfRangeException();
             }
             set
             {
-                if (index >= 0 && index < Size)
-                    system[index] = value;
+                if (index >= 0 && index < Size) system[index] = value;
                 else throw new IndexOutOfRangeException();
             }
         }
 
-        public int Size => system.Count;
+        public int Size => system.Count; // Размер СЛУ
 
-        public void StepUp()
+        public void StepUp() // Приводим систему к ступенчатому виду
         {
             int c, z;
             double p1, p2;
@@ -42,16 +40,15 @@ namespace Task2
                 z = i;
                 if (this[i][z] == 0)
                 {
-                    while (this[i][z] == 0 && z < n)
-                        z++;
+                    while (this[i][z] == 0 && z < n) z++;
                     c = 1;
-                    while ((i + c) < Size && this[i + c][z] == 0)
+                    while ((i + c) < Size && this[i + c][z] == 0) 
                         c++;
-                    if ((i + c) == Size)
+                    if ((i + c) == Size) //Если СЛУ ступенчатого вида
                     {
                         return;
                     }
-                    Swap(this[i], this[i + c]);
+                    Swap(this[i], this[i + c]); //меняем уравнения местами таким образом, чтобы наибольшее кол-во не 0-вых элементов было в 1-ой строке, а наименьшее в последней
                 }
                 for (int j = i + 1; j < Size; j++)
                 {
@@ -62,10 +59,9 @@ namespace Task2
             }
         }
 
-        public double[] Solve()
+        public double[] Solve() // Решаем уравнение
         {
-            while (this[Size - 1].IsNull())
-                this.Delete(Size - 1);
+            while (this[Size - 1].IsNull()) this.Delete(Size - 1); // Удаляем пустые строки
             if (this[Size - 1])
             {
                 if (Size == n)
@@ -87,26 +83,26 @@ namespace Task2
             else throw new ArgumentException("Нет решений!");
         }
 
-        private void Swap(LinearEquation a, LinearEquation b)
+        private void Swap(LinearEquation a, LinearEquation b) 
         {
             LinearEquation temp = new LinearEquation(a);
             b.Copy(a);
             temp.Copy(b);
         }
 
-        public void Add(LinearEquation a)
+        public void Add(LinearEquation a) // Добавляем уравнение в СЛУ
         {
             if (a.Size == n + 1)
                 system.Add(a);
             else throw new ArgumentException();
         }
 
-        public void Delete(int index)
+        public void Delete(int index) // Удаляем уравнение из СЛУ
         {
             system.RemoveAt(index);
         }
 
-        public override string ToString()
+        public override string ToString() 
         {
             string result = "";
             for (int i = 0; i < Size; i++)

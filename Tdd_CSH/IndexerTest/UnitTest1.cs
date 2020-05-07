@@ -45,28 +45,21 @@ namespace IndexerTest
         [ExpectedException(typeof(ArgumentException))]
         public void FailWithWrongArguments1()
         {
-            Assert.Equals(typeof(ArgumentException), new Indexer(array, -1, 3));
+            Assert.Equals(typeof(ArgumentException), new Indexer(array, -1, 3));// Доступ к элементам массива не может начинаться с -1
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void FailWithWrongArguments2()
         {
-            Assert.Equals(typeof(ArgumentException), new Indexer(array, 1, -1));
+            Assert.Equals(typeof(ArgumentException), new Indexer(array, 1, -1)); // Число доступных элементов не может быть = -1
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void FailWithWrongArguments3()
         {
-            Assert.Equals(typeof(ArgumentException), new Indexer(array, 1, 10));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void FailWithWrongArguments4()
-        {
-            Assert.Equals(typeof(ArgumentException), new Indexer(array, 1, 4));
+            Assert.Equals(typeof(ArgumentException), new Indexer(array, 1, 10)); // Число доступных элементов не может превышать размер массива
         }
 
         [TestMethod]
@@ -74,7 +67,7 @@ namespace IndexerTest
         public void FailWithWrongIndexing1()
         {
             var indexer = new Indexer(array, 1, 2);
-            Assert.Equals(typeof(IndexOutOfRangeException), indexer[-1]);
+            Assert.Equals(typeof(IndexOutOfRangeException), indexer[-1]); // Индекс не может быть < 0 
         }
 
         [TestMethod]
@@ -82,7 +75,7 @@ namespace IndexerTest
         public void FailWithWrongIndexing2()
         {
             var indexer = new Indexer(array, 1, 2);
-            Assert.Equals(typeof(IndexOutOfRangeException), indexer[10]);
+            Assert.Equals(typeof(IndexOutOfRangeException), indexer[10]);// индекс не может быть > размер массива - 1
         }
     }
 }

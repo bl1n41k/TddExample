@@ -12,7 +12,7 @@ namespace Task1
         private int begin;
         private int length;
   
-        public Indexer(double[] arr, int begin, int length)
+        public Indexer(double[] arr, int begin, int length) //Доступ к части массива 
         {
             if (begin < 0 || length < 0 || begin + length > arr.Length) throw new ArgumentException();
             else
@@ -31,8 +31,7 @@ namespace Task1
             }
         }
 
-        public double this[int index]
-        {
+        public double this[int index]{ // Устанавливаем и получаем значение элемента по индексу         
             get
             {
                 if (index < 0 || index >= Length || index + begin >= array.Length) throw new IndexOutOfRangeException();
